@@ -9,7 +9,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import json
 import os
 
-
+output_file_path = 'outputs/output_HH_PARSER.json'
 
 pagination = 1  # страниц с обьявлениями
 l = 'https://hh.ru/search/resume?page='
@@ -17,7 +17,7 @@ l = 'https://hh.ru/search/resume?page='
 
 
 try:
-	path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'output.json')
+	path = os.path.join(os.path.abspath(os.path.dirname(__file__)), output_file_path)
 	os.remove(path)
 except:
 	pass
@@ -29,7 +29,7 @@ ua = dict(DesiredCapabilities.CHROME)
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('window-size=1920x935')
-driver = webdriver.Chrome(options=options, executable_path='./chromedriver.exe')
+driver = webdriver.Chrome(options=options, executable_path='driver/chromedriver.exe')
 ###
 
 
@@ -212,18 +212,22 @@ def parseResume(l):
 
 	}
 
+	# print(resumeItem)
+	# print()
+	# print()
+
 
 	# запись
-	if(os.path.exists('output.json')):	
-		with open("output.json", "r") as read_file:
+	if(os.path.exists(output_file_path)):	
+		with open(output_file_path, "r") as read_file:
 			data = json.load(read_file)
 			data.append(resumeItem)
 
-			with open("output.json", "w") as write_file:
+			with open(output_file_path, "w") as write_file:
 				json.dump(data, write_file)
 				write_file.close()
 	else:
-		with open("output.json", "w") as write_file:
+		with open(output_file_path, "w") as write_file:
 			json.dump([resumeItem], write_file)
 			write_file.close()
 
