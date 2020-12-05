@@ -11,8 +11,9 @@ import os
 
 output_file_path = 'outputs/output_HH_PARSER.json'
 
-pagination = 1  # страниц с обьявлениями
+pagination = 10  # страниц с обьявлениями
 l = 'https://hh.ru/search/resume?page='
+l = 'https://penza.hh.ru/search/resume?clusters=true&exp_period=all_time&experience=noExperience&logic=normal&no_magic=false&order_by=relevance&pos=position&skill=3093&skill=1250&text=%EF%F0%EE%E3%F0%E0%EC%EC%E8%F1%F2&area=1&page='
 
 
 
